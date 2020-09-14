@@ -1,10 +1,10 @@
 ///
 pipeline{
     agent any
-        parameters {
-            string(name: 'FE_S3_Bucket', defaultValue: 'stanislav.tiab.tech.s3.amazonaws.com')
-            string(name: 'CF_DIST_ID', defaultValue: '')
-        }
+    //  parameters {
+    //      string(name: 'FE_S3_Bucket', defaultValue: 'stanislav.tiab.tech.s3.amazonaws.com')
+    //      string(name: 'CF_DIST_ID', defaultValue: '')
+    //  }
     environment {
         FE_S3_Bucket = 'stanislav.tiab.tech'
         CF_DIST_ID = ''
