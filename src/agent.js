@@ -3,7 +3,7 @@ import _superagent from 'superagent';
 
 const superagent = superagentPromise(_superagent, global.Promise);
 
-const API_ROOT = 'http://backend-1809598107.us-east-1.elb.amazonaws.com/api';
+const API_ROOT = 'BACKEND_ENDPOINT_VARIABLE';
 
 const encode = encodeURIComponent;
 const responseBody = res => res.body;
