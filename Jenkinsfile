@@ -7,7 +7,7 @@ pipeline{
     //  }
     environment {
         FE_S3_Bucket = 'hw22russu'
-        CF_DIST_ID = ''
+        CF_DIST_ID = 'E2QXCM6XYO1ZQQ'
         BACKEND_ENTRYPOINT = 'https://api.stanislav.tiab.tech/api'
     }
     stages{
