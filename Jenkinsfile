@@ -6,7 +6,7 @@ pipeline{
     //      string(name: 'CF_DIST_ID', defaultValue: '')
     //  }
     environment {
-        FE_S3_Bucket = 'stanislav.tiab.tech'
+        FE_S3_Bucket = 'hw22russu'
         CF_DIST_ID = ''
         BACKEND_ENTRYPOINT = 'https://api.stanislav.tiab.tech/api'
     }
