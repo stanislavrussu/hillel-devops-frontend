@@ -12,7 +12,7 @@ pipeline{
 ///     BACKEND_ENTRYPOINT = 'https://api.stanislav.tiab.tech/api'
 /// }
     environment {
-        AWS_DEFAULT_REGION = 'es-east-1'
+        AWS_DEFAULT_REGION = 'us-east-1'
     }
     stages{
         stage("Build") {
