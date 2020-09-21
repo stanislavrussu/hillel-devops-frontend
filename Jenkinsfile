@@ -29,6 +29,7 @@ pipeline{
                             path: "/${env.BRANCH_NAME}",
                             regionName: "${env.AWS_DEFAULT_REGION}"
                         ){
+                            sh 'env'
                             contentReplace(
                                 configs: [ 
                                     fileContentReplaceConfig( 
@@ -71,6 +72,7 @@ pipeline{
                             regionName: "${env.AWS_DEFAULT_REGION}"
                         ) {
                         sh """
+                            env
                             aws s3 sync ./build/ s3://${env.FE_S3_Bucket}/
                             aws cloudfront create-invalidation --distribution-id ${env.CF_DIST_ID} --paths "/*"
                         """
