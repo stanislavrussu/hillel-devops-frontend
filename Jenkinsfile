@@ -1,15 +1,16 @@
-///
+/// FRONTEND
 pipeline{
     agent any
-    //  parameters {
-    //      string(name: 'FE_S3_Bucket', defaultValue: 'stanislav.tiab.tech.s3.amazonaws.com')
-    //      string(name: 'CF_DIST_ID', defaultValue: '')
-    //  }
-    environment {
-        FE_S3_Bucket = 'hw22russu'
-        CF_DIST_ID = 'E2UUFZPV43ALFK'
-        BACKEND_ENTRYPOINT = 'https://api.stanislav.tiab.tech/api'
+    parameters {
+        string(name: 'FE_S3_Bucket', defaultValue: '', description: 'S3 bucket with frontend content')
+        string(name: 'CF_DIST_ID', defaultValue: '', description: 'CloudFront Distribution ID')
+        string(name: 'BACKEND_ENDPOINT', defaultValue: '', description: 'API endpoint URL')
     }
+/// environment {
+///     FE_S3_Bucket = 'hw22russu'
+///     CF_DIST_ID = 'E2QXCM6XYO1ZQQ'
+///     BACKEND_ENTRYPOINT = 'https://api.stanislav.tiab.tech/api'
+/// }
     stages{
         stage("Build") {
             agent {
@@ -25,7 +26,7 @@ pipeline{
                             configs: [ 
                                 fileContentReplaceItemConfig( 
                                     search: "BACKEND_ENDPOINT_VARIABLE",
-                                    replace: "${env.BACKEND_ENDPOINT}",
+                                    replace: "${params.BACKEND_ENDPOINT}",
                                     matchCount: 1
                                 )
                             ],
@@ -57,8 +58,8 @@ pipeline{
                     secretKeyVariable: 'AWS_SECRET_ACCESS_KEY'
                 ]]) {
                        sh """
-                       aws s3 sync ./build/ s3://${env.FE_S3_Bucket}/
-                       aws cloudfront create-invalidation --distribution-id ${env.CF_DIST_ID} --paths "/*"
+                       aws s3 sync ./build/ s3://${params.FE_S3_Bucket}/
+                       aws cloudfront create-invalidation --distribution-id ${params.CF_DIST_ID} --paths "/*"
                        """
                     }
             }
